@@ -1,11 +1,14 @@
 const { Pool } = require('pg');
 
 const config = {
-    user: 'postgres',
-    host: 'localhost',
-    database: 'graphql',
-    password: '9889',
-    port: 5432,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+    ssl: false,
+    connectionTimeoutMillis: 10000,
+    max: 15
 }
 
 const pool = new Pool(config)

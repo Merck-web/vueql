@@ -1,7 +1,6 @@
 const {ApolloServer, gql} = require('apollo-server');
 const {pool} = require("./dependes");
 
-// Пример запросов
 const getTodosFromDB = async () => {
 
     const client = await pool.connect();
@@ -19,7 +18,8 @@ const getTodosFromDB = async () => {
 const addTodoToDB = async (task, completed) => {
     const client = await pool.connect();
     try {
-        const result = await client.query('INSERT INTO todos(task, completed) VALUES($1, $2) RETURNING *', [task, completed]);
+        const query = `INSERT INTO todos(task, completed) VALUES($1, $2) RETURNING *`
+        const result = await client.query(query, [task, completed]);
         return result.rows[0];
     } finally {
         client.release();
