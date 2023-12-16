@@ -1,4 +1,5 @@
-const { Pool } = require('pg');
+const { Pool } = require('pg')
+const {errorLog, infoLog} = require("./winston");
 
 const config = {
     user: process.env.DB_USER,
@@ -15,16 +16,16 @@ const pool = new Pool(config)
 
 
 pool.on('error', (error, client) => {
-    console.log(error)
+    errorLog(error)
     process.exit(-1)
 })
 
 pool.on('connect', client => {
-    console.log('New client')
+    infoLog('New client')
 })
 
 pool.on('remove', client => {
-    console.log('Client pool removed')
+    infoLog('Client pool removed')
 })
 
 module.exports = {
