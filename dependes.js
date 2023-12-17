@@ -1,4 +1,5 @@
 const { Pool } = require('pg')
+require('dotenv').config()
 const {errorLog, infoLog} = require("./winston");
 
 const config = {
@@ -11,7 +12,6 @@ const config = {
     connectionTimeoutMillis: 10000,
     max: 15
 }
-
 const pool = new Pool(config)
 
 

@@ -1,31 +1,37 @@
-#type User {
-#    id: ID!
-#    username: String!
-#    email: String!
-#    password: String!
-#    avatar: String
-#    joinDate: String!
-#}
-#
-#type Post {
-#    id: ID!
-#    title: String!
-#    content: String!
-#    user: User! # Связь с пользователем, который создал пост
-#}
-#
-#extend type User {
-#    posts: [Post]! # Расширение типа User для получения всех постов пользователя
-#}
-#
-#type Query {
-#    getUsers: User
-#    getUserById(id: ID!): User
-#    getPosts: [Post]! # Запрос на получение всех постов
-#    getPostById(id: ID!): Post # Запрос на получение поста по ID
-#    getTodosFromDB: [Todo]
-#}
-#
-#type Mutation {
-#    registerUser(username: String!, email: String!, password: String!, avatar: String, joinDate: String!): User
-#}
+type Todo {
+    task: String
+    completed: Boolean
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    password: String!
+    avatar: String
+    joinDate: String!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    content: String!
+    user: User! # Связь с пользователем, который создал пост
+}
+
+extend type User {
+    posts: [Post]! # Расширение типа User для получения всех постов пользователя
+}
+
+type Query {
+    getUsers: User
+    getUserById(id: ID!): User
+    getPosts: [Post]! # Запрос на получение всех постов
+    getPostById(id: ID!): Post # Запрос на получение поста по ID
+    getTodosFromDB: [Todo]
+}
+
+type Mutation {
+    registerUser(username: String!, email: String!, password: String!, avatar: String, joinDate: String!): User
+    addTodoToDB(task: String, completed: Boolean): Todo
+}
