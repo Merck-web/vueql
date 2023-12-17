@@ -7,9 +7,9 @@ type User {
     id: ID!
     username: String!
     email: String!
-    password: String!
+    password: String
     avatar: String
-    joinDate: String!
+    joinDate: String
 }
 
 type Post {
@@ -32,6 +32,6 @@ type Query {
 }
 
 type Mutation {
-    registerUser(username: String!, email: String!, password: String!, avatar: String, joinDate: String!): User
+    registerUser(username: String!, email: String!, password: String): User
     addTodoToDB(task: String, completed: Boolean): Todo
 }
